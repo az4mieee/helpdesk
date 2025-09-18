@@ -1,4 +1,4 @@
-import Navbar from "@/components/ui/Navbar";
+import Navbar from "@/components/ui/Navbar";  // N besar, sama persis
 import Hero from "@/components/ui/Hero";
 import Features from "@/components/ui/Features";
 import About from "@/components/ui/About";
