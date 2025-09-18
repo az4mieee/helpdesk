@@ -8,6 +8,7 @@ import Contact from "@/components/ui/Contact";
 import Partners from "@/components/ui/Partners";
 import Footer from "@/components/ui/Footer";
 
+
 export default function LandingPage() {
   return (
     <>
