@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
+
 export default function Hero() {
   // kata-kata yang akan berganti animasi
   const words = ["Helpdesk", "Support", "Service"]; 
