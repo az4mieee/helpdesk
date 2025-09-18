@@ -19,11 +19,10 @@ export default function Navbar() {
         {/* Logo + Teks */}
         <div className="flex items-center gap-2">
           <img
-            src="/src/assets/ekuitas-logo.png"
+            src="/src/assets/ekuitas-h.png"
             alt="Logo Ekuitas"
-            className="h-10 w-10"
+            className="h-17 w-29"
           />
-          <span className="text-[#0F50A1] font-bold text-lg">Ekuitas</span>
         </div>
 
         {/* Menu Desktop */}
@@ -32,7 +31,7 @@ export default function Navbar() {
             <li key={i}>
               <a
                 href={item.href}
-                className="text-gray-700 hover:text-[#0F50A1] transition"
+                className="text-gray-700 font-bold hover:text-[#0F50A1] transition"
               >
                 {item.name}
               </a>
@@ -44,7 +43,7 @@ export default function Navbar() {
         <div className="hidden md:block">
           <a
             href="/login"
-            className="bg-[#1577B6] text-white px-4 py-2 rounded-lg hover:bg-[#0F50A1] transition"
+            className="bg-[#1577B6] text-white px-4 py-2 rounded-lg font-bold hover:bg-[#0F50A1] transition"
           >
             Login
           </a>

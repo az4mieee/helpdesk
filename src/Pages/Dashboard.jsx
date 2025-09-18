@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../Components/Sidebar";
-import "../gradient.css"; 
+import { motion } from "framer-motion";
 
 export default function Dashboard() {
   const [summary, setSummary] = useState({ open: 0, progress: 0, done: 0 });
@@ -20,48 +20,77 @@ export default function Dashboard() {
     t.judul.toLowerCase().includes(search.toLowerCase())
   );
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const purpleBlue = "#4B5CC4"; // biru ke ungu
+
   return (
-    <div className="min-h-screen animated-gradient flex">
+    <div className="min-h-screen flex bg-white">
       <Sidebar />
       <main className="flex-1 p-6">
-        {/* Judul */}
-        <h1 className="text-2xl font-bold text-[#0F50A1] mb-6">
-          📊 Dashboard Helpdesk
-        </h1>
+        <h1 className="text-3xl font-bold text-[#4B5CC4] mb-6">📊 Dashboard Helpdesk</h1>
 
         {/* Ringkasan Tiket */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-[#9ED9FF] p-6 rounded-xl shadow hover:scale-105 transition">
-            <h3 className="text-lg font-medium text-[#5A5858]">Tiket Open</h3>
-            <div className="text-3xl font-bold text-[#0F50A1]">{summary.open}</div>
-          </div>
-          <div className="bg-[#49B6B0] p-6 rounded-xl shadow hover:scale-105 transition">
+          <motion.div
+            className={`bg-[${purpleBlue}] p-6 rounded-xl shadow`}
+            initial="hidden"
+            animate="visible"
+            variants={cardVariants}
+            transition={{ delay: 0.1 }}
+          >
+            <h3 className="text-lg font-medium text-white">Tiket Open</h3>
+            <div className="text-3xl font-bold text-white">{summary.open}</div>
+          </motion.div>
+
+          <motion.div
+            className={`bg-[${purpleBlue}] p-6 rounded-xl shadow`}
+            initial="hidden"
+            animate="visible"
+            variants={cardVariants}
+            transition={{ delay: 0.2 }}
+          >
             <h3 className="text-lg font-medium text-white">Tiket Diproses</h3>
             <div className="text-3xl font-bold text-white">{summary.progress}</div>
-          </div>
-          <div className="bg-[#6FD36A] p-6 rounded-xl shadow hover:scale-105 transition">
+          </motion.div>
+
+          <motion.div
+            className={`bg-[${purpleBlue}] p-6 rounded-xl shadow`}
+            initial="hidden"
+            animate="visible"
+            variants={cardVariants}
+            transition={{ delay: 0.3 }}
+          >
             <h3 className="text-lg font-medium text-white">Tiket Selesai</h3>
             <div className="text-3xl font-bold text-white">{summary.done}</div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Search */}
         <div className="flex flex-col items-center mb-6">
-          <h3 className="text-xl font-semibold text-[#0F50A1] mb-3">📌 Tiket Terbaru</h3>
+          <h3 className="text-xl font-semibold text-[#4B5CC4] mb-3">📌 Tiket Terbaru</h3>
           <input
             type="text"
             placeholder="Cari tiket..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1577B6] w-64 text-center"
+            className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6B6DE5] w-64 text-center"
           />
         </div>
 
         {/* Table Tiket */}
-        <div className="bg-white p-6 rounded-xl shadow">
+        <motion.div
+          className="bg-white p-6 rounded-xl shadow"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-[#0F50A1] text-white">
+              <tr className="bg-[#4B5CC4] text-white">
                 <th className="p-3 rounded-l-lg">ID Tiket</th>
                 <th className="p-3">Judul</th>
                 <th className="p-3">Status</th>
@@ -71,16 +100,19 @@ export default function Dashboard() {
             <tbody>
               {filteredTickets.length > 0 ? (
                 filteredTickets.map((t, i) => (
-                  <tr
+                  <motion.tr
                     key={i}
-                    className="border-b hover:bg-[#F6E603]/20 transition"
+                    className="border-b hover:bg-[#4B5CC4]/10 transition"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: i * 0.1 }}
                   >
-                    <td className="p-3 font-medium text-[#1577B6]">{t.id}</td>
-                    <td className="p-3 text-[#5A5858]">{t.judul}</td>
+                    <td className="p-3 font-medium text-[#4B5CC4]">{t.id}</td>
+                    <td className="p-3 text-[#4B5CC4]">{t.judul}</td>
                     <td
                       className={`p-3 font-semibold ${
                         t.status === "Open"
-                          ? "text-[#0F50A1]"
+                          ? "text-[#F6E603]"
                           : t.status === "Diproses"
                           ? "text-[#49B6B0]"
                           : "text-[#6FD36A]"
@@ -88,8 +120,8 @@ export default function Dashboard() {
                     >
                       {t.status}
                     </td>
-                    <td className="p-3 text-gray-500">{t.tanggal}</td>
-                  </tr>
+                    <td className="p-3 text-[#4B5CC4]">{t.tanggal}</td>
+                  </motion.tr>
                 ))
               ) : (
                 <tr>
@@ -100,7 +132,7 @@ export default function Dashboard() {
               )}
             </tbody>
           </table>
-        </div>
+        </motion.div>
       </main>
     </div>
   );

@@ -5,6 +5,7 @@ import About from "@/components/ui/About";
 import Programs from "@/components/ui/Programs";
 import FAQ from "@/components/ui/FAQ";
 import Contact from "@/components/ui/Contact";
+import Partners from "@/components/ui/Partners";
 import Footer from "@/components/ui/Footer";
 
 export default function LandingPage() {
@@ -16,6 +17,7 @@ export default function LandingPage() {
       <About />
       <Programs />
       <FAQ />
+      <Partners /> 
       <Contact />
       <Footer />
     </>

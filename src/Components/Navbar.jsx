@@ -15,7 +15,7 @@ export default function Navba() {
           className="bg-red-600 hover:bg-green-700 px-3 py-1 rounded"
           onClick={() => navigate("/")} 
         >
-           logout
+           Logout
         </button>
       </div>
     </nav>

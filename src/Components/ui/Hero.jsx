@@ -13,17 +13,21 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleClick = () => {
+    alert("⚠️ Layanan masih dalam pengembangan!");
+  };
+
   return (
     <section
       id="hero"
-      className="relative h-screen flex items-center justify-center text-white px-4"
+      className="relative h-screen flex flex-col items-center justify-center text-white px-4"
       style={{
-        backgroundImage: `url('/Ekuitas-Campus.jpg')`, // taruh gambar di folder public/bg-campus.jpg
+        backgroundImage: `url('/Ekuitas-Campus.jpg')`, // taruh gambar di folder public
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      {/* Overlay gradient biru agar sesuai warna brand */}
+      {/* Overlay gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0F50A1]/90 to-[#1577B6]/90"></div>
 
       {/* Konten Hero */}
@@ -31,7 +35,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="relative text-center z-10"
+        className="relative text-center z-10 flex flex-col items-center"
       >
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
           Selamat Datang di{" "}
@@ -49,13 +53,23 @@ export default function Hero() {
               </motion.span>
             </AnimatePresence>
           </span>
-            <span className="ml-3">Ekuitas</span>
+          <span className="ml-3">Ekuitas</span>
         </h1>
 
-        <p className="text-lg md:text-xl max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8">
           Layanan informasi dan bantuan untuk mahasiswa, dosen, dan civitas
           akademika Universitas Ekuitas.
         </p>
+
+        {/* Tombol Ajukan Pengaduan */}
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleClick}
+          className="bg-[#F6E603] text-[#0F50A1] px-8 py-3 rounded-lg font-semibold shadow-lg hover:opacity-90 transition"
+        >
+          Ajukan Pengaduan
+        </motion.button>
       </motion.div>
     </section>
   );
