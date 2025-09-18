@@ -7,16 +7,14 @@ import DaftarTiket from "./Pages/DaftarTiket";
 import Login from "./Pages/Login";
 import Faq from "./Pages/Faq";
 import Sidebar from "./Components/Sidebar";
-import Navbar from "./Components/Navbar";
+import Navbar from "@/components/ui/Navbar";   // ✅ perbaikan
 import LandingPage from "./Pages/LandingPage";
 
 function AppLayout() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-
-  const hideLayoutOn = ["/", "/Pages/login"]
- 
+  const hideLayoutOn = ["/", "/Pages/login"];
   const isLanding = hideLayoutOn.includes(location.pathname);
 
   return (
@@ -39,7 +37,6 @@ function AppLayout() {
         {!isLanding && <Navbar />}
 
         <div className="p-0 mt-0">
-        
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/Pages/Dashboard" element={<Dashboard />} />
