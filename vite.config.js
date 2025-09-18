@@ -1,7 +1,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
-import path from "path"; // ⬅️ ini penting buat alias
+import path from "path";
+import { fileURLToPath } from "url";
+
+// Buat __dirname di ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -11,7 +16,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"), // ⬅️ alias biar bisa import "@/..."
+      "@": path.resolve(__dirname, "./src"),
     },
   },
 });
