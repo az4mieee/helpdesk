@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import Dashboard from "./Pages/Dashboard";
 import BuatTiket from "./Pages/BuatTiket";
 import DaftarTiket from "./Pages/DaftarTiket";
@@ -53,8 +54,10 @@ function AppLayout() {
 
 export default function App() {
   return (
-    <Router>
-      <AppLayout />
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <AppLayout />
+      </Router>
+    </ThemeProvider>
   );
 }
