@@ -11,10 +11,10 @@ export default function Login({ setIsLoggedIn }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Login hanya untuk user biasa - perbaikan pencocokan data
+    // Login hanya untuk user biasa - perbaikan pencocokan data untuk mendukung login dengan email atau username
     const helpdeskData = JSON.parse(localStorage.getItem('helpdeskData')) || { users: [], tickets: {} };
     const user = helpdeskData.users.find(
-      (user) => user.email === username && user.password === password
+      (user) => (user.email === username || user.username === username) && user.password === password
     );
 
     if (user) {
@@ -23,7 +23,7 @@ export default function Login({ setIsLoggedIn }) {
       setIsLoggedIn(true); 
       navigate("/Pages/Dashboard");
     } else {
-      alert("Email atau password salah!");
+      alert("Username atau password salah!");
     }
   };
 
