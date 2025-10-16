@@ -11,12 +11,19 @@ export default function Login({ setIsLoggedIn }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (username === "admin" && password === "12345") {
+    // Login hanya untuk user biasa - perbaikan pencocokan data
+    const helpdeskData = JSON.parse(localStorage.getItem('helpdeskData')) || { users: [], tickets: {} };
+    const user = helpdeskData.users.find(
+      (user) => user.email === username && user.password === password
+    );
+
+    if (user) {
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
       alert("Login berhasil!");
       setIsLoggedIn(true); 
       navigate("/Pages/Dashboard");
     } else {
-      alert("Username atau password salah!");
+      alert("Email atau password salah!");
     }
   };
 
